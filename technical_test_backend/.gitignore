@@ -1,0 +1,95 @@
+## Archivos de usuario
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Archivos de Visual Studio
+.vs/
+*.dbmdl
+*.vcxproj.user
+
+## Archivos de compilación
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+## Archivos de publicación
+*.publishsettings
+*.pubxml
+*.pubxml.user
+
+## Archivos de paquetes
+*.nupkg
+*.snupkg
+*.nuspec
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.cachefile
+
+## Paquetes NuGet
+*.nuget
+*.ncrunch*
+.nuget/
+packages/
+!**/packages/build/
+*.nupkg
+
+## Configuración de usuario
+*.DotSettings.user
+*.DotSettings
+
+## Configuración de Rider
+.idea/
+
+## Archivos de cobertura y pruebas
+*.coverage
+*.coveragexml
+TestResult.xml
+TestResults/
+*.trx
+*.vsp
+*.vspx
+
+## Archivos temporales
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.db
+*.db-shm
+*.db-wal
+
+## Archivos de publicación de Azure
+PublishProfiles/
+
+## Archivos de Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings
+
+## Archivos de entidades y migraciones
+migrations/
+
+## Archivos de sistema
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+## Archivos locales de secretos
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+.env
