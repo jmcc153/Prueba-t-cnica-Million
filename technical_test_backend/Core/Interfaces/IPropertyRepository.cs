@@ -1,4 +1,5 @@
-﻿using technical_test.Core.Entities;
+﻿using technical_test.Application.DTOs.Property;
+using technical_test.Core.Entities;
 
 namespace technical_test.Core.Interfaces
 {

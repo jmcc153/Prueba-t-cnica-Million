@@ -8,7 +8,7 @@ namespace technical_test.Application.Interfaces
         Task<Owner> CreateOwnerAsync(CreateOwnerDto createOwnerDto);
         Task<Owner?> GetOwnerByIdAsync(string id);
         Task<List<Owner>> GetAllOwnersAsync();
-        Task<Owner> UpdateOwnerAsync(UpdateOwnerDto updateOwnerDto);
+        Task<Owner> UpdateOwnerAsync(string id,UpdateOwnerDto updateOwnerDto);
         Task<bool> DeleteOwnerAsync(string id);
     }
 }

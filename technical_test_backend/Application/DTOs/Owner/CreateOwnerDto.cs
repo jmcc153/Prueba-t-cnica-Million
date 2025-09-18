@@ -15,7 +15,7 @@ namespace technical_test.Application.DTOs.Owner
         [Required(ErrorMessage = "La fecha de nacimiento es requerida")]
         public DateOnly BirthDate { get; set; }
 
-        [Url(ErrorMessage = "La URL de la foto debe ser válida")]
-        public string? PhotoURL { get; set; }
+        [Required(ErrorMessage = "La foto es requerida")]
+        public IFormFile? Photo { get; set; }
     }
 }

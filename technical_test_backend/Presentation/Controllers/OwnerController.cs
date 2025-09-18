@@ -13,8 +13,8 @@ namespace technical_test.Presentation.Controllers
     [ApiController]
     public class OwnerController : ControllerBase
     {
-        public readonly ILogger<OwnerController> _logger;
-        public readonly IOwnerService service;
+        private readonly ILogger<OwnerController> _logger;
+        private readonly IOwnerService service;
         
         public OwnerController(ILogger<OwnerController> logger, IOwnerService service)
         {
@@ -26,33 +26,97 @@ namespace technical_test.Presentation.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Owner>>> Get()
         {
-            var data = await service.GetAllOwnersAsync();
-            return Ok(data);
+            try
+            {
+                var data = await service.GetAllOwnersAsync();
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while retrieving owners.");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         // GET api/<OwnerController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Owner>> Get(string id)
         {
-            return "value";
+            try
+            {
+                return await service.GetOwnerByIdAsync(id);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"An error occurred while retrieving owner with ID {id}.");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet("{id}/foto")]
+        public async Task<IActionResult> GetFoto(string id)
+        {
+            try
+            {
+                var usuario = await service.GetOwnerByIdAsync(id);
+                if (usuario == null || usuario.Photo == null) return NotFound();
+
+                return File(usuario.Photo, "image/jpeg");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"An error occurred while retrieving photo for owner with ID {id}.");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         // POST api/<OwnerController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromForm] CreateOwnerDto value)
         {
+            try
+            {
+                await service.CreateOwnerAsync(value);
+                return Ok("Owner created");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while creating an owner.");
+                return StatusCode(500, "Error creating owner");
+            }
         }
 
         // PUT api/<OwnerController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public string Put(string id, [FromForm] UpdateOwnerDto update)
         {
+            try
+            {
+                var result = service.UpdateOwnerAsync(id,update);
+                return "Owner updated";
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while updating an owner.");
+                return "Error updating owner";
+            }
         }
 
         // DELETE api/<OwnerController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public string Delete(string id)
         {
+            try
+            {
+                var result = service.DeleteOwnerAsync(id);
+                return "Owner deleted";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while deleting an owner.");
+                return "Error deleting owner";
+            }
         }
     }
 }

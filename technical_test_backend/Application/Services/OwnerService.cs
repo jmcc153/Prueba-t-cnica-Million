@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using technical_test.Application.DTOs.Owner;
 using technical_test.Application.Interfaces;
 using technical_test.Core.Entities;
@@ -16,15 +17,29 @@ namespace technical_test.Application.Services
 
         public async Task<Owner> CreateOwnerAsync(CreateOwnerDto createOwnerDto)
         {
+            byte[] photoBytes = null;
+            
+            if (createOwnerDto.Photo != null && createOwnerDto.Photo.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    await createOwnerDto.Photo.CopyToAsync(ms);
+                    photoBytes = ms.ToArray();
+                }
+            }
+
+
+
             var owner = new Owner
             {
                 Name = createOwnerDto.Name,
                 Address = createOwnerDto.Address,
                 BirthDate = createOwnerDto.BirthDate,
-                PhotoURL = createOwnerDto.PhotoURL
+                Photo = photoBytes
             };
 
-            return await _ownerRepository.CreateOwner(owner);
+            await _ownerRepository.CreateOwner(owner);
+            return owner;
         }
 
         public async Task<Owner?> GetOwnerByIdAsync(string id)
@@ -37,15 +52,27 @@ namespace technical_test.Application.Services
             return await _ownerRepository.GetAllOwners();
         }
 
-        public async Task<Owner> UpdateOwnerAsync(UpdateOwnerDto updateOwnerDto)
+        public async Task<Owner> UpdateOwnerAsync(string id, UpdateOwnerDto updateOwnerDto)
         {
+
+            byte[] photoBytes = null;
+
+            if (updateOwnerDto.Photo != null && updateOwnerDto.Photo.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    await updateOwnerDto.Photo.CopyToAsync(ms);
+                    photoBytes = ms.ToArray();
+                }
+            }
+
             var owner = new Owner
             {
-                Id = updateOwnerDto.Id,
+                Id = id,
                 Name = updateOwnerDto.Name,
                 Address = updateOwnerDto.Address,
                 BirthDate = updateOwnerDto.BirthDate,
-                PhotoURL = updateOwnerDto.PhotoURL
+                Photo = photoBytes
             };
 
             return await _ownerRepository.UpdateOwner(owner);

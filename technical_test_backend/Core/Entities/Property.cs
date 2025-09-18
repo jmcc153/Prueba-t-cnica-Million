@@ -15,7 +15,7 @@ namespace technical_test.Core.Entities
         public string CodeInternal { get; set; }
         public string Year { get; set; }
         public string OwnerId { get; set; }
-        public List<PropertyTrace> Traces { get; set; }
-        public List<PropertyImage> Images { get; set; }
+        public List<PropertyTrace>? Traces { get; set; }
+        public List<PropertyImage>? Images { get; set; }
     }
 }

@@ -4,8 +4,6 @@ namespace technical_test.Application.DTOs.Owner
 {
     public class UpdateOwnerDto
     {
-        [Required(ErrorMessage = "El ID es requerido")]
-        public string Id { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El nombre es requerido")]
         [StringLength(100, ErrorMessage = "El nombre no puede exceder 100 caracteres")]
@@ -19,6 +17,6 @@ namespace technical_test.Application.DTOs.Owner
         public DateOnly BirthDate { get; set; }
 
         [Url(ErrorMessage = "La URL de la foto debe ser válida")]
-        public string? PhotoURL { get; set; }
+        public IFormFile? Photo { get; set; }
     }
 }

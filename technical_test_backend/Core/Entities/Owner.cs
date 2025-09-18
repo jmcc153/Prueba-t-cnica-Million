@@ -15,6 +15,6 @@ namespace technical_test.Core.Entities
         [BsonElement("birthDate")]
         public DateOnly BirthDate { get; set; }
         [BsonElement("photoURL")]
-        public string PhotoURL { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

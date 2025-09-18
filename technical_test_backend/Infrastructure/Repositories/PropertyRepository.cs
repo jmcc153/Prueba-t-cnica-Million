@@ -10,7 +10,7 @@ namespace technical_test.Infrastructure.Repositories
 
         public PropertyRepository(IMongoDatabase database)
         {
-            _properties = database.GetCollection<Property>("properties");
+            _properties = database.GetCollection<Property>("Property");
         }
 
         public async Task<Property> CreateProperty(Property property)
