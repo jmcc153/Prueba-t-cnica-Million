@@ -10,7 +10,7 @@ namespace technical_test.Application.DTOs.Property
         public string Address { get; set; } = string.Empty;
         public double Price { get; set; }
         public string CodeInternal { get; set; } = string.Empty;
-        public string Year { get; set; } = string.Empty;
+        public string Year { get; set; }
         
         public string OwnerId { get; set; }
         public List<PropertyTraceDto>? Traces { get; set; }

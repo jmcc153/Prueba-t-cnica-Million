@@ -1,6 +1,7 @@
 import { CirclePlus } from "lucide-react";
 import { Modal } from "../modal/modal";
-import type { FormUsers, InputsModalType } from "@/types/users";
+import type { FormUsers } from "@/types/users";
+import type { InputsModalType } from "@/types/form";
 import type { UseFormReturn } from "react-hook-form";
 
 type ModalUsersProps = {
@@ -8,7 +9,6 @@ type ModalUsersProps = {
   setOpen: (open: boolean) => void;
   form: UseFormReturn<FormUsers>;
   onSubmit: (data: FormUsers) => void;
-  handleFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 };
 
 export function ModalUsers(props: ModalUsersProps) {

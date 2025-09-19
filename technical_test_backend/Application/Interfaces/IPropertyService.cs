@@ -5,11 +5,11 @@ namespace technical_test.Application.Interfaces
 {
     public interface IPropertyService
     {
-        Task<Property> CreatePropertyAsync(CreatePropertyDto property);
-        Task<Property> GetPropertyByIdAsync(string id);
-        Task<List<Property>> GetAllPropertiesAsync();
+        Task<PropertyResponseDto> CreatePropertyAsync(CreatePropertyDto property);
+        Task<PropertyResponseDto> GetPropertyByIdAsync(string id);
+        Task<List<PropertyResponseDto>> GetAllPropertiesAsync(string? name, string? address, double? priceMin, double? priceMax);
         Task<PropertyOwnerResponseDto> GetPropertyOwnerById(string id);
-        Task<Property> UpdatePropertyAsync(UpdatePropertyDto property);
+        Task<PropertyResponseDto> UpdatePropertyAsync(UpdatePropertyDto property);
         Task<bool> DeletePropertyAsync(string id);
     }
 }

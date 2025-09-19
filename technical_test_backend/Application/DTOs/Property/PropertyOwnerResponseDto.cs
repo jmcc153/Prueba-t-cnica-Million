@@ -14,7 +14,7 @@ namespace technical_test.Application.DTOs.Property
         public string Year { get; set; }
         public string OwnerId { get; set; }
         public OwnerDto OwnerInfo { get; set; }
-        public List<PropertyTrace>? Traces { get; set; }
-        public List<PropertyImage>? Images { get; set; }
+        public List<PropertyTraceDto>? Traces { get; set; }
+        public List<PropertyImageDto>? Images { get; set; }
     }
 }

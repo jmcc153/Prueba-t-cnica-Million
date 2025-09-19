@@ -63,7 +63,6 @@ export const Users = () => {
             data={data}
             title="Usuarios"
             handleClick={handleClick}
-            handleEdit={() => {}}
           />
         </>
       )}

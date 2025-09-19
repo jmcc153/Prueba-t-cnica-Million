@@ -28,7 +28,6 @@ interface RowWithStatus {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  handleEdit: (row: TData) => void;
   handleClick?: (row: TData) => void;
   title?: string;
 }
@@ -36,7 +35,6 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
-  handleEdit = () => {},
   handleClick = () => {},
   title,
 }: DataTableProps<TData, TValue>) {

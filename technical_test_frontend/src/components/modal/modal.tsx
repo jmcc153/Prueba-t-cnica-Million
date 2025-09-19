@@ -24,7 +24,7 @@ import {
 } from "../ui/select";
 
 import { type FC } from "react";
-import type { InputsModalType } from "@/types/users";
+import type { InputsModalType } from "@/types/form";
 import { Button } from "../ui/button";
 
 type ModalProps<T extends Record<string, unknown>> = {
@@ -98,9 +98,17 @@ export function Modal<T extends Record<string, unknown>>(props: ModalProps<T>) {
                              type={input.type}
                              accept="image/*"
                              onChange={e => {
-                               const file = e.target.files?.[0] ?? null;
-                               field.onChange(file);
+                               if (input.multiple) {
+                                 // Para archivos múltiples
+                                 const files = e.target.files ? Array.from(e.target.files) : [];
+                                 field.onChange(files);
+                               } else {
+                                 // Para archivo único
+                                 const file = e.target.files?.[0] ?? null;
+                                 field.onChange(file);
+                               }
                              }}
+                            multiple={input.multiple ?? false }
                            />
                          </FormControl>
                          <FormMessage />

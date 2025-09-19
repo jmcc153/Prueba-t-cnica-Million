@@ -14,10 +14,3 @@ export type FormUsers = {
 
 
 
-export type InputsModalType = {
-  name: string
-  label: string
-  type: string
-  placeholder: string
-  options?: { value: string; label: string }[]
-}

@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 import App from "@/App";
 import { Home } from "@/pages/home";
 import { Users } from "@/pages/users/users";
-import { Property } from "@/pages/property";
+import { Property } from "@/pages/property/property";
 
 
 export const router = createBrowserRouter([
@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "home",
+        path: "/",
         element: <Home />,
       },
       {

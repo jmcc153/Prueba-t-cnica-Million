@@ -22,12 +22,12 @@ namespace technical_test.Application.DTOs.Property
 
         [Required(ErrorMessage = "El año es requerido")]
         [StringLength(4, MinimumLength = 4, ErrorMessage = "El año debe tener 4 dígitos")]
-        public string Year { get; set; } = string.Empty;
+        public string Year { get; set; }
 
         [Required(ErrorMessage = "El ID del propietario es requerido")]
         public string OwnerId { get; set; } = string.Empty;
 
         public List<PropertyTraceDto>? Traces { get; set; }
-        public List<PropertyImageDto>? Images { get; set; }
+        public List<PropertyImageInputDto>? Images { get; set; } // Usar PropertyImageInputDto
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using technical_test.Application.DTOs.Property;
 using technical_test.Application.Interfaces;
 using technical_test.Core.Entities;
@@ -22,10 +23,20 @@ namespace technical_test.Presentation.Controllers
         }
         // GET: api/<PropertyController>
         [HttpGet]
-        public async Task<ActionResult<List<Property>>> Get()
+        public async Task<ActionResult<List<PropertyResponseDto>>> Get([FromQuery] string? name, [FromQuery] string? address, [FromQuery] double? priceMin, [FromQuery] double? priceMax
+        )
         {
-            var data = await service.GetAllPropertiesAsync();
-            return Ok(data);
+            try
+            {
+                var data = await service.GetAllPropertiesAsync(name, address, priceMin, priceMax);
+                return Ok(data);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while retrieving properties.");
+                return StatusCode(500, "Internal server error");
+            }
 
         }
 
@@ -33,26 +44,31 @@ namespace technical_test.Presentation.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PropertyOwnerResponseDto>> GetPropertyOwner(string id)
         {
-            var data = await service.GetPropertyOwnerById(id);
-            return Ok(data);
+            try
+            {
+                var data = await service.GetPropertyOwnerById(id);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"An error occurred while retrieving property with ID {id}.");
+                return StatusCode(500, "Internal server error");
+            }                                   
         }
 
         // POST api/<PropertyController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromForm] CreatePropertyDto value)
         {
-        }
-
-        // PUT api/<PropertyController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<PropertyController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            try
+            {
+                await service.CreatePropertyAsync(value);
+                return Ok("Property created");
+            }
+            catch
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

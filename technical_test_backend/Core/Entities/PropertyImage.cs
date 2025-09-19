@@ -2,7 +2,7 @@
 {
     public class PropertyImage
     {
-        public string FileUrl { get; set; }
+        public byte[] FileUrl { get; set; }
         public bool Enabled { get; set; }
     }
 }

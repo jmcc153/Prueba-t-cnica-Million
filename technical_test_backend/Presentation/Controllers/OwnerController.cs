@@ -86,37 +86,5 @@ namespace technical_test.Presentation.Controllers
                 return StatusCode(500, "Error creating owner");
             }
         }
-
-        // PUT api/<OwnerController>/5
-        [HttpPut("{id}")]
-        public string Put(string id, [FromForm] UpdateOwnerDto update)
-        {
-            try
-            {
-                var result = service.UpdateOwnerAsync(id,update);
-                return "Owner updated";
-            }
-            catch(Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while updating an owner.");
-                return "Error updating owner";
-            }
-        }
-
-        // DELETE api/<OwnerController>/5
-        [HttpDelete("{id}")]
-        public string Delete(string id)
-        {
-            try
-            {
-                var result = service.DeleteOwnerAsync(id);
-                return "Owner deleted";
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while deleting an owner.");
-                return "Error deleting owner";
-            }
-        }
     }
 }
